@@ -2,3 +2,7 @@
 require("@rails/ujs").start()
 import "@hotwired/turbo-rails"
 import "controllers"
+
+//= require jquery3
+//= require popper
+//= require bootstrapimport * as bootstrap from "bootstrap"
