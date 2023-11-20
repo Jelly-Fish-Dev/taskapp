@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_18_210459) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_18_215235) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "account_projects", force: :cascade do |t|
+    t.bigint "account_id", null: false
+    t.bigint "project_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_account_projects_on_account_id"
+    t.index ["project_id"], name: "index_account_projects_on_project_id"
+  end
 
   create_table "accounts", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,6 +35,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_18_210459) do
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.bigint "account_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["account_id"], name: "index_projects_on_account_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -34,8 +51,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_18_210459) do
     t.datetime "updated_at", null: false
     t.bigint "account_id", null: false
     t.string "status"
+    t.bigint "project_id", null: false
     t.index ["account_id"], name: "index_tasks_on_account_id"
+    t.index ["project_id"], name: "index_tasks_on_project_id"
   end
 
+  add_foreign_key "account_projects", "accounts"
+  add_foreign_key "account_projects", "projects"
+  add_foreign_key "projects", "accounts"
   add_foreign_key "tasks", "accounts"
+  add_foreign_key "tasks", "projects"
 end

@@ -1,1 +1,32 @@
-@import 'application.boostrap.scss';
+@import 'bootstrap/scss/bootstrap';
+.task-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+
+.task-status {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 30%; /* Adjust this value to change the width of the columns */
+  margin: 0 10px; /* Adjust this value to change the space between the columns */
+}
+
+.task-box {
+  /* Styles to make the task box look like a card */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.float-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+.column {
+  background-color: #f8f9fa; /* Light gray */
+  min-height: 70vh; /* 70% of the viewport height */
+}

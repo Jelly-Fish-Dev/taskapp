@@ -2,3 +2,5 @@
 
 require_relative "../config/application"
 require "importmap/commands"
+pin "@rails/ujs", to: "rails-ujs.js", preload: true
+pin "jquery", to: "https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery"

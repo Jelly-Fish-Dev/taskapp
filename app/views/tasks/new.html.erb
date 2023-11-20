@@ -2,6 +2,11 @@
 
 <%= form_for @task do |f| %>
   <p>
+    <%= f.label :project_id, "Project" %><br>
+    <%= f.collection_select :project_id, @projects, :id, :name, { selected: @task.project_id }, { required: true } %>
+  </p>
+
+  <p>
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </p>
